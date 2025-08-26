@@ -19,6 +19,13 @@ These references are meant to be a practical aid for developers working with Sho
 
 ---
 
+## Visual Reference
+
+![Shopify Product Object Relationships](shopify-product-relationships.png)  
+*Diagram showing Product ↔ Variants ↔ Images relationships across REST, GraphQL, and Liquid.*
+
+---
+
 ## Contributing
 
 If you notice **anything missing, incorrect, or that could be improved**, please open an issue in this repository.  
@@ -30,6 +37,14 @@ Pull requests with corrections, improvements, or examples are also welcome!
 
 These examples are **for reference purposes only**.  
 Values shown are **sample data** and may differ depending on your store configuration, installed apps, or API version.
+
+---
+
+## References
+
+- <a href="https://shopify.dev/docs/api/admin-rest/latest/resources/product" target="_blank">Shopify Admin REST API Docs</a>  
+- <a href="https://shopify.dev/docs/api/admin-graphql/latest/objects/Product" target="_blank">Shopify Admin GraphQL API Docs</a>  
+- <a href="https://shopify.dev/docs/api/liquid/objects/product" target="_blank">Shopify Liquid Product Object Docs</a>  
 
 ---
 
