@@ -56,6 +56,11 @@ query getProduct($id: ID!) {
             name
             value
           }
+          image {
+            id
+            url
+            altText
+          }
         }
       }
     }
@@ -142,7 +147,12 @@ query getProduct($id: ID!) {
               "updatedAt": "2025-08-26T12:34:56Z",
               "selectedOptions": [
                 { "name": "Color", "value": "Black" }
-              ]
+              ],
+              "image": {
+                "id": "gid://shopify/ProductImage/5566778899",
+                "url": "https://cdn.shopify.com/s/files/backpack.jpg",
+                "altText": "Hiking backpack"
+              }
             }
           }
         ]
@@ -182,18 +192,46 @@ query getProduct($id: ID!) {
 
 ---
 
+## Mutating the Variant ↔ Image Relationship
+
+Unlike REST (which uses `variant.image_id` and `image.variant_ids`), GraphQL only supports linking **from the variant to the image**.
+
+To associate an image with a variant:
+
+```graphql
+mutation {
+  productVariantUpdate(input: {
+    id: "gid://shopify/ProductVariant/16180339887498",
+    imageId: "gid://shopify/ProductImage/5566778899"
+  }) {
+    productVariant {
+      id
+      image {
+        id
+        url
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+```
+
+---
+
 ## Notes
 
-- `id` — global ID (GraphQL GID format).  
-- `status` — GraphQL uses uppercase values (`ACTIVE`, `DRAFT`, `ARCHIVED`).  
-- `options` and `variants` are connections (paginated with `first/after`).  
-- `images` and `collections` are also connections.  
-- `seo` is a nested object.  
-- Some fields (like `unitPrice`, `presentmentPrices`, `sellingPlanGroups`) can be queried optionally for advanced pricing/subscriptions.  
+- `variant.image` gives you the linked image.  
+- GraphQL does **not** expose `variant_ids` on `ProductImage` (one-directional only).  
+- To reassign, use `productVariantUpdate` with a new `imageId`.  
+- If no variant-specific image is set, themes fall back to the product’s `featuredImage`.  
 
 ---
 
 ## References
 
 - [Shopify Admin GraphQL API Docs](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product)
+- [Shopify ProductVariant Update Mutation](https://shopify.dev/docs/api/admin-graphql/latest/mutations/productVariantUpdate)
 - [Shopify GraphQL Pagination](https://shopify.dev/docs/api/usage/pagination-graphql)
