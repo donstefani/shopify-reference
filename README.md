@@ -13,8 +13,8 @@ These references are meant to be a practical aid for developers working with Sho
 
 ## Files
 
-- [shopify-product-object-reference-with-images.md](shopify-product-object-reference-with-images.md) — REST Admin API Product object reference  
-- [shopify-graphql-product-object-reference-with-images.md](shopify-graphql-product-object-reference-with-images.md) — GraphQL Admin API Product object reference  
+- [shopify-rest-product-object-reference.md](shopify-rest-product-object-reference.md) — REST Admin API Product object reference  
+- [shopify-graphql-product-object-reference.md](shopify-graphql-product-object-reference.md) — GraphQL Admin API Product object reference  
 - [shopify-liquid-product-object-reference.md](shopify-liquid-product-object-reference.md) — Liquid Product object reference for themes  
 
 ---
